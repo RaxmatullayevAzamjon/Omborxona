@@ -4,15 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Clients</title>
-
+    {% load static %}
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
   <!-- IonIcons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -139,12 +139,15 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row">1.</th>
-                            <td>Ali</td>
-                            <td>Baraka</td>
-                            <td>+998911115555</td>
-                            <td>Farg'ona markazi, Askiya</td>
+                            {% for mijoz in mijozlar %}
+                            <th scope="row">{{forloop.counter}}</th>
+                            <td>{{mijoz.ism}}</td>
+                            <td>{{mijoz.nom}}</td>
+                            <td>{{mijoz.tel}}</td>
+                            <td>{{mijoz.manzil}}</td>
                             <td><a href="#"><button type="submit" class="btn btn-danger" data-toggle="modal">Tahrirlash</button></a></td>
+                            <td><a href="/Mijoz_ochir/{{mijoz.id}}"><button type="submit" class="btn btn-danger" data-toggle="modal">O'chirish</button></a></td>
+                            {% endfor %}
                         </tr>
                     </tbody>
                 </table>

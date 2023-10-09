@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/bootstrap-4.3.1/bootstrap-4.3.1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/css.css">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-4.3.1/bootstrap-4.3.1/dist/css/bootstrap.min.css'%} ">
+    <link rel="stylesheet" href="{% static 'css/css.css'%} ">
     <title>Ombor</title>
 </head>
 <body>
@@ -16,10 +17,10 @@
             </div>
         </div>
         <div class="row wix w-75 m-auto">
-            <a href="mahsulotlar" class="btn btn-dark p-5 wix col-md-6">
+            <a href="/products/" class="btn btn-dark p-5 wix col-md-6">
                 Mahsulot
             </a>
-            <a href="clientlar" class="btn btn-success p-5 wix col-md-6">
+            <a href="/mijoz/" class="btn btn-success p-5 wix col-md-6">
                 Client
             </a>
             <a href="stats" class="btn btn-warning p-5 wix col-md-12">
