@@ -63,11 +63,32 @@ def Product_edit(requests, son):
 
 class MijozView(View):
     def get(self, request):
+        natija = Mijoz.objects.filter(ombor__user=request.user)
+        qidiruv = request.GET.get("qidiruv_sozi")
+        if qidiruv:
+            natija = natija.filter(ism__contains=qidiruv
+                    ) | natija.filter(nom__contains=qidiruv
+                    ) | natija.filter(manzil__contains=qidiruv)
+
         content = {
-        "mijozlar": Mijoz.objects.filter(ombor__user=request.user)
+        "mijozlar": natija
         }
         return render(request, "clients.html",content)
+
 
 def Mijoz_ochir(request, son):
     Mijoz.objects.filter(id=son).delete()
     return redirect("/mijoz/")
+
+def Mijoz_edit(request, son):
+    if request.method == "POST":
+        Mijoz.objects.filter(id=son).update(
+            ism=request.POST.get("i"),
+            tel=request.POST.get("t"),
+            qarz=request.POST.get("q")
+        )
+        return redirect("/mijoz/")
+    content = {
+        "mijoz": Mijoz.objects.get(id=son)
+    }
+    return render(request, "client_update.html",content)

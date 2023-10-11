@@ -13,5 +13,6 @@ urlpatterns = [
     path('products/', Products.as_view()),
     path('product_edit/<int:son>/', Product_edit),
     path('mijoz/', MijozView.as_view()),
+    path('Mijoz_edit/<int:son>/', Mijoz_edit),
     path('Mijoz_ochir/<int:son>/', Mijoz_ochir),
 ]
