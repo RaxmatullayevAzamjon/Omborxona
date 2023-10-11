@@ -27,8 +27,15 @@ class Logout(View):
 
 class Products(View):
     def get(self, request):
+        natija = Maxsulot.objects.filter(ombor__user=request.user)
+        qidiruv = request.GET.get("qidiruv_sozi")
+        if qidiruv:
+            natija = natija.filter(nom__contains=qidiruv
+                    ) | natija.filter(brend__contains=qidiruv
+                    ) | natija.filter(olchov=qidiruv)
+
         content = {
-            "products": Maxsulot.objects.filter(ombor=request.user)
+            "products": natija
         }
         return render(request, "products.html",content)
     def post(self, request):
@@ -38,14 +45,26 @@ class Products(View):
             miqdor = request.POST.get("m"),
             brend = request.POST.get("b"),
             olchov = request.POST.get("o"),
-            ombor = Ombor.objects.get(id=request.user.id)
+            ombor = Ombor.objects.get(user=request.user)
         )
         return redirect("/products/")
+
+def Product_edit(requests, son):
+    if requests.method == "POST":
+        Maxsulot.objects.filter(id=son).update(
+            narx=requests.POST.get("n"),
+            miqdor=requests.POST.get("m")
+        )
+        return redirect("/products/")
+    content = {
+        "maxsulot": Maxsulot.objects.get(id=son)
+    }
+    return render(requests, "product_update.html",content)
 
 class MijozView(View):
     def get(self, request):
         content = {
-        "mijozlar": Mijoz.objects.filter(ombor=request.user)
+        "mijozlar": Mijoz.objects.filter(ombor__user=request.user)
         }
         return render(request, "clients.html",content)
 

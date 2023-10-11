@@ -11,6 +11,7 @@ urlpatterns = [
     path('bolimlar/', bolimlar),
     path('Logout/', Logout.as_view()),
     path('products/', Products.as_view()),
+    path('product_edit/<int:son>/', Product_edit),
     path('mijoz/', MijozView.as_view()),
     path('Mijoz_ochir/<int:son>/', Mijoz_ochir),
 ]
