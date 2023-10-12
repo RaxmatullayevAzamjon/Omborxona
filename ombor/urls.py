@@ -1,8 +1,7 @@
-
 from django.contrib import admin
 from django.urls import path
 from asosiy.views import *
-
+from stats.views import *
 
 
 urlpatterns = [
@@ -15,4 +14,5 @@ urlpatterns = [
     path('mijoz/', MijozView.as_view()),
     path('Mijoz_edit/<int:son>/', Mijoz_edit),
     path('Mijoz_ochir/<int:son>/', Mijoz_ochir),
+    path('statsView/', StatsView),
 ]

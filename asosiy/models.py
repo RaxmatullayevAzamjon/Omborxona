@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-# Create your models here.
+
 class Ombor(models.Model):
     # id, usename, password, is_staff, is_superuser, is_active
     nom = models.CharField(max_length=30)

@@ -33,7 +33,6 @@ class Products(View):
             natija = natija.filter(nom__contains=qidiruv
                     ) | natija.filter(brend__contains=qidiruv
                     ) | natija.filter(olchov=qidiruv)
-
         content = {
             "products": natija
         }
@@ -92,3 +91,4 @@ def Mijoz_edit(request, son):
         "mijoz": Mijoz.objects.get(id=son)
     }
     return render(request, "client_update.html",content)
+
